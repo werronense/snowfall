@@ -3,9 +3,6 @@ window.onload = () => {
   let ctx = canvas.getContext('2d');
   let width = canvas.width = window.innerWidth;
   let height = canvas.height = window.innerHeight;
-  // temporary start point values
-  let x = Math.floor(Math.random() * width);
-  let y = 50;
   // temporary change rate values
   let dx = 0;
   let dy = 1.5;
@@ -27,15 +24,20 @@ window.onload = () => {
     }
 
     update() {
-      this.x += dx;
-      this.y += dy;
+      if (this.y > height + 10) {
+        this.x = Math.floor(Math.random() * width);
+        this.y = Math.floor(Math.random() * -0.25 * height);
+      } else {
+        this.x += dx;
+        this.y += dy;
+      }
     }
   }
 
   // create and populate an array of flakes
   const flakes = [];
 
-  while (flakes.length < 25) {
+  while (flakes.length < 35) {
     let flake = new Flake(
       Math.floor(Math.random() * width),
       Math.floor(Math.random() * -height)
