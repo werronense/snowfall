@@ -36,7 +36,10 @@ window.onload = () => {
   const flakes = [];
 
   while (flakes.length < 25) {
-    let flake = new Flake(Math.floor(Math.random() * width), 50);
+    let flake = new Flake(
+      Math.floor(Math.random() * width),
+      Math.floor(Math.random() * -height)
+    );
     flakes.push(flake);
   }
 
