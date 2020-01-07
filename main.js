@@ -4,26 +4,50 @@ window.onload = () => {
   let width = canvas.width = window.innerWidth;
   let height = canvas.height = window.innerHeight;
   // temporary start point values
-  let x = 50;
+  let x = Math.floor(Math.random() * width);
   let y = 50;
   // temporary change rate values
   let dx = 0;
   let dy = 1.5;
 
-  function drawFlake(xi, yi) {
-    ctx.beginPath();
-    ctx.arc(xi, yi, 10, 0, Math.PI * 2);
-    ctx.fillStyle = 'white';
-    ctx.fill();
-    ctx.closePath();
+  // define the Flake class
+  class Flake {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+    }
+
+    // method definitions
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, 10, 0, Math.PI * 2);
+      ctx.fillStyle = 'white';
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    update() {
+      this.x += dx;
+      this.y += dy;
+    }
   }
 
-  function draw() {
+  // create and populate an array of flakes
+  const flakes = [];
+
+  while (flakes.length < 25) {
+    let flake = new Flake(Math.floor(Math.random() * width), 50);
+    flakes.push(flake);
+  }
+
+  // loop over the array and draw, update each flake
+  function loop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawFlake(x, y);
-    x += dx;
-    y += dy;
+    for (let i = 0; i < flakes.length; i++) {
+      flakes[i].draw();
+      flakes[i].update();
+    }
   }
 
-  setInterval(draw, 10);
+  setInterval(loop, 10);
 }
