@@ -37,7 +37,7 @@ window.onload = () => {
   // create and populate an array of flakes
   const flakes = [];
 
-  while (flakes.length < 35) {
+  while (flakes.length < width / 40) {
     let flake = new Flake(
       Math.floor(Math.random() * width),
       Math.floor(Math.random() * -height)
