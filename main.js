@@ -11,7 +11,6 @@ window.onload = () => {
       this.x = x;
       this.y = y;
       this.size = size;
-      this.dx = 0;
       this.dy = size * 0.2;
     }
 
@@ -29,7 +28,7 @@ window.onload = () => {
         this.x = Math.floor(Math.random() * width);
         this.y = Math.floor(Math.random() * -0.25 * height);
       } else {
-        this.x += this.dx;
+        this.x += (Math.random() * 1) - 1;
         this.y += this.dy;
       }
     }
@@ -41,7 +40,7 @@ window.onload = () => {
 
   while (flakes.length < width / 40) {
     let flake = new Flake(
-      Math.floor(Math.random() * width),
+      Math.floor(Math.random() * width) + width / 10,
       Math.floor(Math.random() * -height),
       Math.floor(Math.random() * 6) + 4
     );
